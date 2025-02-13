@@ -73,4 +73,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+    public function usersWhoBookmarked()
+{
+    return $this->belongsToMany(User::class, 'bookmark_user');
+}
 }

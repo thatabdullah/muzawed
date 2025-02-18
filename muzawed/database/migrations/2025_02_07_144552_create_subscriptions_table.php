@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->decimal('price', 10, 2)->nullable();
+            // payment details 
             $table->timestamps();
         });
     }

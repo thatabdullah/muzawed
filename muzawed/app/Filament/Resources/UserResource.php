@@ -18,14 +18,14 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BooleanColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use App\Models\Account; // to use the account model
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    public static function form(Form $form): Form #here we have built the form
+    public static function form(Form $form): Form // here we have built the form
     {
         return $form
             ->schema([
@@ -43,9 +43,9 @@ class UserResource extends Resource
                         
                         Forms\components\Select::make('account_id')
                         ->label('Account')
-                        ->options(Account::all()->pluck('name', 'id'))
+                        ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
                         ->searchable() 
-                        ->nullable(), // (for indie users)
+                        ->nullable(), // (for indie users)*/
 
                         Forms\components\Select::make('role')
                             ->options([

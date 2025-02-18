@@ -37,11 +37,10 @@ return new class extends Migration
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('review_count')->default(0);
             $table->string('support_email')->nullable();
-            $table->boolean('live_chat_available')->default(false);
             $table->string('support_hours')->nullable();
             $table->integer('renewal_period_days')->nullable();
-            $table->date('expiry_date')->nullable();
             $table->json('supported_languages')->nullable(); // e.g., ['en', 'ar]
+            $table->string('product_link')->nullable();
             $table->timestamps();
         });
     }

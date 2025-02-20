@@ -75,6 +75,11 @@ class Product extends Model
     }
     public function usersWhoBookmarked()
 {
-    return $this->belongsToMany(User::class, 'bookmark_user');
+        return $this->belongsToMany(User::class, 'bookmark_user');
 }
+
+    public function integrationPartners()
+    {
+        return $this->belongsToMany(IntegrationPartner::class, 'product_integration_partner'); // many-to-many with product
+    }
 }

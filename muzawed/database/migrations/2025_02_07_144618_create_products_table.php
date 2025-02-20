@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('version')->nullable(); // e.g., 'v1.0', 'v2.0'
             $table->text('version_features')->nullable(); // Features in each version
             $table->boolean('api_supported')->default(false);
-            $table->json('integration_partners')->nullable(); // Store list of integrations
+            $table->json('integration_partners')->nullable(); // DROPED in 140751. new spearate table for integration partners
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('review_count')->default(0);
             $table->string('support_email')->nullable();

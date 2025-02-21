@@ -13,7 +13,6 @@ class Product extends Model
         'name',
         'description',
         'category_id',
-        'price',
         'currency',
         'discount_percentage',
         'pricing_model',
@@ -28,8 +27,6 @@ class Product extends Model
         'media_gallery',
         'version',
         'version_features',
-        'api_supported',
-        'integration_partners',
         'average_rating',
         'review_count',
         'support_email',
@@ -37,17 +34,15 @@ class Product extends Model
         'support_hours',
         'renewal_period_days',
         'expiry_date',
-        'supported_languages',
     ];
 
     protected $casts = [
         'active' => 'boolean',
         'featured' => 'boolean',
-        'api_supported' => 'boolean',
         'live_chat_available' => 'boolean',
         'media_gallery' => 'array',
         'integration_partners' => 'array',
-        'supported_languages' => 'array',
+        
     ];
 
     // Product belongs to a SaaS Provider (Account)
@@ -71,7 +66,7 @@ class Product extends Model
     // Product has many Tags (Many-to-Many)
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'product_tag');
     }
     public function usersWhoBookmarked()
 {

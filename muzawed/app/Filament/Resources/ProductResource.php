@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\MultiSelect;
 use App\Models\Tag;
 use App\Model\IntegrationPartner;
+use App\Models\Account;
 
 class ProductResource extends Resource
 {
@@ -35,6 +36,11 @@ class ProductResource extends Resource
                 ->label('Product Name')
                 ->required()
                 ->maxLength(255),
+
+            Forms\components\Select::make('account_id')
+            ->label('Account')
+            ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
+            ->searchable(),   
             
             Forms\Components\Textarea::make('description')
                 ->label('Description')

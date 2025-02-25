@@ -20,7 +20,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer global require laravel/installer && \
     ln -s $(composer config --global home)/vendor/bin/laravel /usr/local/bin/laravel && \
-    composer require livewire/livewire:^3.0 filament/filament:"^3.2" -W
+    composer require livewire/livewire:^3.0 && composer require filament/filament:"^3.2" -W \
+    && composer require bezhansalleh/filament-language-switch
 
 
 WORKDIR /var/www

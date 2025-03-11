@@ -16,7 +16,7 @@ jobs:
                 sudo chmod -R u+rwx .   
 
             - name: filter-checked-out-code
-              run: rm -rf .git dev-infrastructure/
+              run: rm -rf .git dev-infrastructure/ .github/
 
             - name: SSH
               uses: webfactory/ssh-agent@v0.7.0

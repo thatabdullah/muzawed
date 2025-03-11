@@ -1,0 +1,22 @@
+name: Ship to Development server
+
+on:
+    workflow_dispatch:
+
+jobs:
+    ship:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout-code
+              uses: actions/checkout@v3
+
+            - name: filter-checked-out-code
+              run: rm -rf .git dev-infrastructure/
+
+            - name: SSH
+              uses: webfactory/ssh-agent@v0.7.0
+              with:
+                ssh-private-key: ${{ secrets.SSH_KEY }}  
+
+            - name: delta-sync-with-dev-server
+              run: rsync -avz --delete --progress -e "ssh -o StrictHostKeyChecking=no" . ubuntu@${{ secrets.HOST }}:/muzawed2/private-muzawed/

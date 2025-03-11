@@ -17,9 +17,15 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationLabel = 'Categories';
+    public static function getNavigationLabel(): string
+    {
+        return __('filamentnav.categories');
+    }
 
-    protected static ?string $navigationGroup = 'Products';
+    public static function getNavigationGroup(): string
+    {
+        return __('filamentnav.products'); 
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-bars-3-bottom-left';
 
@@ -31,7 +37,7 @@ class CategoryResource extends Resource
                 ->required()
                 ->unique()
                 ->maxLength(255)
-                ->label('Category Name'),
+                ->label(__('category.name')),
 
             ]);
     }
@@ -40,8 +46,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('name')->label(__('category.name'))->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('created_at')->label(__('category.created_at'))->dateTime(),
             ])
             ->filters([
                 //

@@ -10,6 +10,11 @@ jobs:
             - name: checkout-code
               uses: actions/checkout@v3
 
+            - name: set-permissions
+              run: |
+                sudo chown -R $USER:$USER .
+                sudo chmod -R u+rwx .   
+
             - name: filter-checked-out-code
               run: rm -rf .git dev-infrastructure/
 
@@ -17,6 +22,7 @@ jobs:
               uses: webfactory/ssh-agent@v0.7.0
               with:
                 ssh-private-key: ${{ secrets.SSH_KEY }}  
+    
 
             - name: delta-sync-with-dev-server
               run: rsync -avz --delete --progress -e "ssh -o StrictHostKeyChecking=no" . ubuntu@${{ secrets.HOST }}:/muzawed2/private-muzawed/

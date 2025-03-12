@@ -17,9 +17,15 @@ class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static ?string $navigationGroup = 'Products';
+    public static function getNavigationLabel(): string
+    {
+        return __('filamentnav.tags');
+    }
 
-    protected static ?string $navigationLabel = 'Tags';
+    public static function getNavigationGroup(): string
+    {
+        return __('filamentnav.products'); 
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
@@ -29,6 +35,7 @@ class TagResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                 ->required()
+                ->label(__('tag.name'))
                 ->unique(ignoreRecord: true)
                 ->maxLength(255),
             ]);
@@ -40,9 +47,11 @@ class TagResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->label(__('tag.name')),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
+                ->label(__('tag.created_at'))
                 ->sortable(),
             ])
             ->filters([

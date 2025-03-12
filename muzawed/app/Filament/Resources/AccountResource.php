@@ -13,50 +13,60 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\User;
+use Filament\Forms\Components\Select;
 class AccountResource extends Resource
 {
     protected static ?string $model = Account::class;
 
-    protected static ?string $navigationGroup = 'Membership';
+    public static function getNavigationLabel(): string
+    {
+        return __('filamentnav.accounts');
+    }
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-
+    public static function getNavigationGroup(): string
+    {
+        return __('filamentnav.memberships'); 
+    }
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
             Forms\Components\TextInput::make('name')
                 ->required()
-                ->maxLength(255),
+                ->maxLength(255)
+                ->label(__('account.name')),
 
             Forms\Components\Select::make('type')
                 ->options([
-                    'enterprise' => 'Enterprise',
-                    'saas' => 'SaaS',
+                    'enterprise' => __('account.enterprise'),
+                    'saas' => __('account.saas'),
                 ])
-                ->required(),
+                ->required()
+                ->label(__('account.type')),
 
             Forms\Components\FileUpload::make('logo')
                 ->image()
-                ->nullable(),
+                ->nullable()
+                ->label(__('account.label')),
 
             Forms\Components\Textarea::make('description')
-                ->nullable(),
+                ->nullable()
+                ->label(__('account.description')),
 
             Forms\Components\Section::make('Admin User')
                 ->schema([
                     Forms\Components\TextInput::make('admin_name')
-                        ->label('Admin Name')
+                        ->label(__('account.admin_name'))
                         ->required(),
 
                     Forms\Components\TextInput::make('admin_email')
-                        ->label('Admin Email')
+                        ->label(__('account.admin_email'))
                         ->email()
                         ->unique(User::class, 'email')
                         ->required(),
 
                     Forms\Components\TextInput::make('admin_password')
-                        ->label('Admin Password')
+                        ->label(__('account.admin_password'))
                         ->password()
                         ->required(),
                 ]),
@@ -65,21 +75,21 @@ class AccountResource extends Resource
                 ->label('Member Users')
                 ->schema([
                     Forms\Components\TextInput::make('name')
-                        ->label('Member Name')
+                        ->label(__('account.member_name'))
                         ->required(),
 
                     Forms\Components\TextInput::make('email')
-                        ->label('Member Email')
+                        ->label('account.member_email')
                         ->email()
                         ->unique(User::class, 'email')
                         ->required(),
 
                     Forms\Components\TextInput::make('password')
-                        ->label('Member Password')
+                        ->label(__('account.member_password'))
                         ->password()
                         ->required(),
                 ])
-                ->createItemButtonLabel('Add Member'),
+                ->createItemButtonLabel(__('account.add_member')),
             ]);
     }
 
@@ -87,10 +97,10 @@ class AccountResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('type')->sortable(),
-                Tables\Columns\ImageColumn::make('logo'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime('M d, Y'),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable()->label(__('account.name')),
+                Tables\Columns\TextColumn::make('type')->sortable()->label(__('account.type')),
+                Tables\Columns\ImageColumn::make('logo')->label(__('account.logo')),
+                Tables\Columns\TextColumn::make('created_at')->dateTime('M d, Y')->label(__('account.created_at')),
             ])
             ->filters([
                 //

@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'accounts' => 'حساب الأعمال',
+    'accounts' => 'حسابات الأعمال',
     'user' => 'المستخدمين',
     'categories' => 'الفئات',
     'products' => 'المنتجات التقنية',
-    'tags' => 'الإشارات',
+    'tags' => 'الوسوم',
     'integration' => 'شركاء التكامل',
+    'memberships' => 'العضويات',
 ];

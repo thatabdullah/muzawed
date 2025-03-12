@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'accounts' => 'Business account',
+    'accounts' => 'Business accounts',
     'user' => 'Users',
     'categories' => 'Categories',
     'products' => 'SaaS Products',
     'tags' => 'Tags',
     'integration' => 'Integration partners',
+    'memberships' => 'Memberships',
 ];

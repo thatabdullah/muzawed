@@ -21,9 +21,15 @@ class IntegrationPartnerResource extends Resource
 {
     protected static ?string $model = IntegrationPartner::class;
 
-    protected static ?string $navigationLabel = 'Integration Partners';
+    public static function getNavigationLabel(): string
+    {
+        return __('filamentnav.integration');
+    }
 
-    protected static ?string $navigationGroup = 'Products';
+    public static function getNavigationGroup(): string
+    {
+        return __('filamentnav.products'); 
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
@@ -32,12 +38,12 @@ class IntegrationPartnerResource extends Resource
         return $form
             ->schema([
                         Forms\Components\TextInput::make('name')
-                            ->label('Name')
+                            ->label(__('integration.name'))
                             ->required()
                             ->maxLength(255),
 
                         Forms\Components\TextInput::make('website')
-                            ->label('Website')
+                            ->label(__('integration.website'))
                             ->url()
                             ->nullable(),
 
@@ -48,9 +54,9 @@ class IntegrationPartnerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('website')->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Created At')->dateTime('M d, Y'),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable()->label(__('integration.name')),
+                Tables\Columns\TextColumn::make('website')->sortable()->label(__('integration.website')),
+                Tables\Columns\TextColumn::make('created_at')->label(__('integration.created_at'))->dateTime('M d, Y'),
             ])
             ->filters([
                 //

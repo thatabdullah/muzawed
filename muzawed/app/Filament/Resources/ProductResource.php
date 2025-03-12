@@ -21,9 +21,15 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationLabel = 'Products';
+    public static function getNavigationLabel(): string
+    {
+        return __('filamentnav.products');
+    }
 
-    protected static ?string $navigationGroup = 'Products';
+    public static function getNavigationGroup(): string
+    {
+        return __('filamentnav.products'); 
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-code-bracket-square';
     
@@ -33,21 +39,21 @@ class ProductResource extends Resource
         return $form
         ->schema([
             Forms\Components\TextInput::make('name')
-                ->label('Product Name')
+                ->label(__('product.name'))
                 ->required()
                 ->maxLength(255),
 
             Forms\components\Select::make('account_id')
-            ->label('Account')
+            ->label(__('product.account'))
             ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
             ->searchable(),   
             
             Forms\Components\Textarea::make('description')
-                ->label('Description')
+                ->label(__('product.description_en'))
                 ->nullable(),
             
             Forms\Components\Select::make('category_id')
-                ->label('Category')
+                ->label(__('product.category'))
                 ->options(function () {
                     return \App\Models\Category::all()->pluck('name', 'id');
                 })
@@ -60,40 +66,40 @@ class ProductResource extends Resource
                 ->default('SAR')
                 ->maxLength(3), */
             
-            Forms\Components\TextInput::make('discount_percentage')
+           /* Forms\Components\TextInput::make('discount_percentage')
                 ->label('Discount Percentage')
                 ->numeric()
-                ->nullable(),
+                ->nullable(), */
             
             Forms\Components\Select::make('pricing_model')
-                ->label('Pricing Model')
+                ->label(__('product.pricing_model'))
                 ->options([
-                    'subscription' => 'Subscription',
-                    'one-time' => 'One-time',
-                    'pay-as-you-go' => 'Pay as you go',
+                    'subscription' => __('product.subscription'),
+                    'one-time' => __('product.one_time'),
+                    'pay-as-you-go' => __('product.payasyougo'),
                 ])
                 ->required(),
             
             Forms\Components\TextInput::make('trial_period_days')
-                ->label('Trial Period (Days)')
+                ->label(__('product.trial_period'))
                 ->numeric()
                 ->nullable(),
     
 
             Forms\Components\Textarea::make('detailed_description')
-                ->label('Detailed Description')
+                ->label(__('product.detailed_description_en'))
                 ->nullable(),
 
             Forms\Components\Textarea::make('key_features')
-                ->label('Key Features')
+                ->label(__('product.key_features_en'))
                 ->nullable(),
 
             Forms\Components\TextInput::make('documentation_url')
-                ->label('Documentation URL')
+                ->label(__('product.documentation_url'))
                 ->nullable(),
 
             Forms\Components\TextInput::make('video_url')
-                ->label('Video URL')
+                ->label(__('product.video_url'))
                 ->nullable(),
 
             
@@ -102,70 +108,55 @@ class ProductResource extends Resource
                 ->nullable(),
 
             Forms\Components\Textarea::make('version_features')
-                ->label('Version Features')
+                ->label(__('product.version_features_en'))
                 ->nullable(),
 
             
             Forms\Components\MultiSelect::make('integrationPartners')
             ->relationship('integrationPartners', 'name') // 'name' is the column from the IntegrationPartner model
-            ->label('Integration Partners')
+            ->label(__('product.integration_partners'))
             ->preload()
             ->searchable(),
 
-            /*Forms\Components\TextInput::make('average_rating')
-                ->label('Average Rating')
-                ->numeric()
-                ->default(0)
-                ->minValue(0)
-                ->maxValue(5), */
-
-          /*  Forms\Components\TextInput::make('review_count')
-                ->label('Review Count')
-                ->numeric()
-                ->default(0), */
 
             Forms\Components\TextInput::make('support_email')
-                ->label('Support Email')
+                ->label(__('product.support_email'))
                 ->nullable(),
 
             Forms\Components\TextInput::make('support_hours')
-                ->label('Support Hours')
+            ->label(__('product.support_hours'))
                 ->nullable(),
 
-            Forms\Components\TextInput::make('renewal_period_days')
-                ->label('Renewal Period (Days)')
-                ->numeric()
-                ->nullable(),
 
             Forms\Components\TextInput::make('product_link')
-                ->label('Product Link')
+                ->label(__('product.product_link'))
                 ->nullable(),
 
             Forms\Components\MultiSelect::make('tags')
             ->relationship('tags', 'name') // 'name' is the column from the tags table
-            ->label('Tags')
+            ->label(__('product.tags'))
             ->preload()
             ->searchable(),
 
             Forms\Components\Checkbox::make('active')
-            ->label('Active')
+            ->label(__('product.active'))
             ->default(true),
 
             Forms\Components\Checkbox::make('featured')
-                ->label('Featured')
+                ->label(__('product.featured'))
                 ->default(false),
 
                 Forms\Components\FileUpload::make('main_image')
-                ->label('Main Image')
+                ->label(__('product.main_Image'))
                 ->image()
                 ->nullable(),
 
             Forms\Components\Repeater::make('media_gallery')
-                ->label('Media Gallery')
+                ->label(__('product.media_gallery'))
                 ->schema([
                     Forms\Components\FileUpload::make('image')
                         ->image()
-                        ->label('Image or Video')
+                        ->label(__('product.image_or_video'))
                         ->nullable(),
                 ])
                 ->nullable(),                
@@ -177,14 +168,14 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('category.name')->label('Category')->sortable(),
-                Tables\Columns\BooleanColumn::make('active')->sortable(),
-                Tables\Columns\BooleanColumn::make('featured')->sortable(),
-                Tables\Columns\TextColumn::make('average_rating')->sortable(),
-                Tables\Columns\TextColumn::make('review_count')->sortable(),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable()->label(__('product.name')),
+                Tables\Columns\TextColumn::make('category.name')->label(__('product.category'))->sortable(),
+                Tables\Columns\BooleanColumn::make('active')->sortable()->label(__('product.active')),
+                Tables\Columns\BooleanColumn::make('featured')->sortable()->label(__('product.featured')),
+                Tables\Columns\TextColumn::make('average_rating')->sortable()->label(__('product.average_rating')),
+                Tables\Columns\TextColumn::make('review_count')->sortable()->label(__('product.review_count')),
                 Tables\Columns\TextColumn::make('tags.name')
-                ->label('Tags')
+                ->label(__('product.tags'))
                 ->badge() // Displays tags in a badge format
                 ->separator(', '), 
             ])

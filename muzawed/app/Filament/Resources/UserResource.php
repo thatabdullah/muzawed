@@ -23,9 +23,15 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationGroup = 'Membership';
+    public static function getNavigationLabel(): string
+    {
+        return __('filamentnav.users');
+    }
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    public static function getNavigationGroup(): string
+    {
+        return __('filamentnav.memberships'); 
+    }
 
     public static function form(Form $form): Form // here we have built the form
     {
@@ -34,31 +40,33 @@ class UserResource extends Resource
                 Section::make('User Information')->schema([
                     Grid::make(2)->schema([
                         Forms\components\TextInput::make('name')
-                            ->label('Full Name')
+                            ->label(__('user.name'))
                             ->required()
                             ->maxLength(255),
 
                         Forms\components\TextInput::make('email')
                             ->email()
+                            ->label(__('user.email'))
                             ->unique(User::class, 'email', ignoreRecord: true)
                             ->required(),
                         
                         Forms\components\Select::make('account_id')
-                        ->label('Account')
+                        ->label(__('user.account'))
                         ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
                         ->searchable() 
                         ->nullable(), // (for indie users)*/
 
                         Forms\components\Select::make('role')
                             ->options([
-                                'admin' => 'Admin',
-                                'member' => 'Member',
+                                'admin' => __('user.admin'),
+                                'member' => __('user.member'),
                             ])
                             ->default('member')
                             ->required(),
 
                         Forms\components\TextInput::make('password')
                             ->password()
+                            ->label(__('user.password'))
                             ->required(fn($record) => $record === null)
                             ->minLength(8)
                             ->dehydrateStateUsing(fn($state) => bcrypt($state))
@@ -68,11 +76,11 @@ class UserResource extends Resource
 
                 Section::make('Settings')->schema([
                     Forms\components\Toggle::make('is_active')
-                        ->label('Active')
+                        ->label(__('user.active'))
                         ->default(true),
 
                     Forms\components\DateTimePicker::make('email_verified_at')
-                        ->label('Email verified at')
+                        ->label(__('user.email_verified_at'))
                         ->default(now()),
                 ]),
             ]);
@@ -82,11 +90,11 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('email')->sortable()->searchable(),
-                TextColumn::make('role')->sortable(),
-                BooleanColumn::make('is_active')->label('Active'),
-                TextColumn::make('email_verified_at')->label('Email verified at')->dateTime('M d, Y'),
+                TextColumn::make('name')->sortable()->searchable()->label(__('user.name')),
+                TextColumn::make('email')->sortable()->searchable()->label(__('user.email')),
+                TextColumn::make('role')->sortable()->label(__('user.role')),
+                BooleanColumn::make('is_active')->label(__('user.active')),
+                TextColumn::make('email_verified_at')->label(__('user.email_verified_at'))->dateTime('M d, Y'),
             ])
             ->filters([])
             ->actions([

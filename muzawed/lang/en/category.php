@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'name' => 'اسم الفئة',
-    'created_at' => 'تاريخ الإنشاء',
+    'name_en' => 'Name',
+    'name_ar' => 'Arabic Name',
+    'created_at' => 'Created at',
 ];

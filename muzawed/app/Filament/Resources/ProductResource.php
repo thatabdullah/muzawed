@@ -48,8 +48,12 @@ class ProductResource extends Resource
             ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
             ->searchable(),   
             
-            Forms\Components\Textarea::make('description')
+            Forms\Components\Textarea::make('description_en')
                 ->label(__('product.description_en'))
+                ->nullable(),
+
+            Forms\Components\Textarea::make('description_ar')
+                ->label(__('product.description_ar'))
                 ->nullable(),
             
             Forms\Components\Select::make('category_id')
@@ -66,10 +70,6 @@ class ProductResource extends Resource
                 ->default('SAR')
                 ->maxLength(3), */
             
-           /* Forms\Components\TextInput::make('discount_percentage')
-                ->label('Discount Percentage')
-                ->numeric()
-                ->nullable(), */
             
             Forms\Components\Select::make('pricing_model')
                 ->label(__('product.pricing_model'))
@@ -80,36 +80,44 @@ class ProductResource extends Resource
                 ])
                 ->required(),
             
-            Forms\Components\TextInput::make('trial_period_days')
-                ->label(__('product.trial_period'))
-                ->numeric()
-                ->nullable(),
-    
 
-            Forms\Components\Textarea::make('detailed_description')
-                ->label(__('product.detailed_description_en'))
+            Forms\Components\Textarea::make('detailed_description_en')
+            ->label(__('product.detailed_description_en'))
+            ->nullable(),
+            
+            Forms\Components\Textarea::make('detailed_description_ar')
+                ->label(__('product.detailed_description_ar'))
                 ->nullable(),
 
-            Forms\Components\Textarea::make('key_features')
-                ->label(__('product.key_features_en'))
-                ->nullable(),
+            Forms\Components\Textarea::make('key_features_en')
+            ->label(__('product.key_features_en'))
+            ->nullable(),
+
+            Forms\Components\Textarea::make('key_features_ar')
+            ->label(__('product.key_features_ar'))
+            ->nullable(),
 
             Forms\Components\TextInput::make('documentation_url')
                 ->label(__('product.documentation_url'))
                 ->nullable(),
 
-            Forms\Components\TextInput::make('video_url')
-                ->label(__('product.video_url'))
-                ->nullable(),
+            Forms\Components\FileUpload::make('video')
+            ->nullable()
+            ->disk(config('filesystems.default'))
+            ->label(__('product.video')),
 
             
             Forms\Components\TextInput::make('version')
                 ->label('Version')
                 ->nullable(),
 
-            Forms\Components\Textarea::make('version_features')
-                ->label(__('product.version_features_en'))
-                ->nullable(),
+            Forms\Components\Textarea::make('version_features_en')
+            ->label(__('product.version_features_en'))
+            ->nullable(),
+            
+            Forms\Components\Textarea::make('version_features_ar')
+            ->label(__('product.version_features_ar'))
+            ->nullable(),
 
             
             Forms\Components\MultiSelect::make('integrationPartners')
@@ -133,7 +141,7 @@ class ProductResource extends Resource
                 ->nullable(),
 
             Forms\Components\MultiSelect::make('tags')
-            ->relationship('tags', 'name') // 'name' is the column from the tags table
+            ->relationship('tags', 'name_en') // 'name' is the column from the tags table
             ->label(__('product.tags'))
             ->preload()
             ->searchable(),
@@ -146,10 +154,11 @@ class ProductResource extends Resource
                 ->label(__('product.featured'))
                 ->default(false),
 
-                Forms\Components\FileUpload::make('main_image')
-                ->label(__('product.main_Image'))
-                ->image()
-                ->nullable(),
+            Forms\Components\FileUpload::make('main_image')
+            ->label(__('product.main_Image'))
+            ->image()
+            ->disk(config('filesystems.default'))
+            ->nullable(),
 
             Forms\Components\Repeater::make('media_gallery')
                 ->label(__('product.media_gallery'))
@@ -157,6 +166,7 @@ class ProductResource extends Resource
                     Forms\Components\FileUpload::make('image')
                         ->image()
                         ->label(__('product.image_or_video'))
+                        ->disk(config('filesystems.default'))
                         ->nullable(),
                 ])
                 ->nullable(),                
@@ -174,7 +184,7 @@ class ProductResource extends Resource
                 Tables\Columns\BooleanColumn::make('featured')->sortable()->label(__('product.featured')),
                 Tables\Columns\TextColumn::make('average_rating')->sortable()->label(__('product.average_rating')),
                 Tables\Columns\TextColumn::make('review_count')->sortable()->label(__('product.review_count')),
-                Tables\Columns\TextColumn::make('tags.name')
+                Tables\Columns\TextColumn::make('tags.name_en')
                 ->label(__('product.tags'))
                 ->badge() // Displays tags in a badge format
                 ->separator(', '), 

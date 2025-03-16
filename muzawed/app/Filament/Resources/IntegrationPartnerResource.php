@@ -47,6 +47,12 @@ class IntegrationPartnerResource extends Resource
                             ->url()
                             ->nullable(),
 
+                        Forms\Components\FileUpload::make('logo')
+                        ->image()
+                        ->nullable()
+                        ->disk(config('filesystems.default'))
+                        ->label(__('integration.logo')),    
+
             ]);
     }
 

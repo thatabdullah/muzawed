@@ -27,6 +27,8 @@ class AccountResource extends Resource
     {
         return __('filamentnav.memberships'); 
     }
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -47,11 +49,16 @@ class AccountResource extends Resource
             Forms\Components\FileUpload::make('logo')
                 ->image()
                 ->nullable()
-                ->label(__('account.label')),
+                ->disk(config('filesystems.default'))
+                ->label(__('account.logo')),
 
-            Forms\Components\Textarea::make('description')
+            Forms\Components\Textarea::make('description_en')
                 ->nullable()
-                ->label(__('account.description')),
+                ->label(__('account.description_en')),
+
+            Forms\Components\Textarea::make('description_ar')
+            ->nullable()
+            ->label(__('account.description_ar')),
 
             Forms\Components\Section::make('Admin User')
                 ->schema([

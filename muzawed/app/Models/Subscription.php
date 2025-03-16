@@ -8,7 +8,7 @@ class Subscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['account_id', 'saas_product_name', 'start_date', 'end_date', 'price'];
+    protected $fillable = ['account_id', 'saas_product_id', 'start_date', 'end_date', 'price'];
 
     public function account()
     {

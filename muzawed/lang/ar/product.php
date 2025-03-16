@@ -27,7 +27,10 @@ return [
         'featured' => 'مميز',
         'main_Image' => 'الصورة الرئيسية',
         'media_gallery' => 'معرض الوسائط',
-        'image_or_video' => 'صورة أو فيديو',
+        'video' => 'مقطع',
+        'image_or_video' => 'صورة أو مقطع',
+        
+
     
         'subscription' => 'اشتراك',
         'one_time' => 'دفع لمرة واحدة',

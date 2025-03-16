@@ -32,6 +32,7 @@ class UserResource extends Resource
     {
         return __('filamentnav.memberships'); 
     }
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form // here we have built the form
     {

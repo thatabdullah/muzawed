@@ -15,32 +15,26 @@ return new class extends Migration
             $table->id();
             $table->foreignId('account_id')->constrained()->onDelete('cascade'); // SaaS provider that owns the product
             $table->string('name');
-            $table->text('description')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->decimal('price', 10, 2); // DROPPED in 190922
             $table->string('currency', 3)->default('SAR');
-            $table->decimal('discount_percentage', 5, 2)->nullable();
             $table->enum('pricing_model', ['subscription', 'one-time', 'pay-as-you-go']);
-            $table->integer('trial_period_days')->nullable(); // Days for free trial
             $table->boolean('active')->default(true);
             $table->boolean('featured')->default(false);
-            $table->text('detailed_description')->nullable();
-            $table->text('key_features')->nullable();
             $table->string('documentation_url')->nullable();
-            $table->string('video_url')->nullable();
-            $table->string('main_image')->nullable();
-            $table->json('media_gallery')->nullable(); // Store URLs for images or videos
             $table->string('version')->nullable(); // e.g., 'v1.0', 'v2.0'
-            $table->text('version_features')->nullable(); // Features in each version
-            $table->boolean('api_supported')->default(false); // DROPPED in 190922
-            $table->json('integration_partners')->nullable(); // DROPED in 140751. new spearate table for integration partners
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('review_count')->default(0);
             $table->string('support_email')->nullable();
             $table->string('support_hours')->nullable();
-            $table->integer('renewal_period_days')->nullable();
-            $table->json('supported_languages')->nullable(); // DROPPED in 190922
             $table->string('product_link')->nullable();
+            $table->json('key_features_en')->nullable();
+            $table->json('version_features_en')->nullable();
+            $table->json('key_features_ar')->nullable();
+            $table->json('version_features_ar')->nullable();
+            $table->text('detailed_description_en')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('detailed_description_ar')->nullable();
+            $table->text('description_ar')->nullable();
             $table->timestamps();
         });
     }

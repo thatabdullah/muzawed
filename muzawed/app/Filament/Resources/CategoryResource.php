@@ -33,12 +33,19 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('name_en')
                 ->required()
                 ->unique()
                 ->maxLength(255)
-                ->label(__('category.name')),
+                ->label(__('category.name_en')),
 
+                Forms\Components\TextInput::make('name_ar')
+                ->required()
+                ->unique()
+                ->maxLength(255)
+                ->label(__('category.name_ar')),
+
+                
             ]);
     }
 
@@ -46,7 +53,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label(__('category.name'))->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('name_en')->label(__('category.name_en'))->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('name_ar')->label(__('category.name_ar'))->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->label(__('category.created_at'))->dateTime(),
             ])
             ->filters([

@@ -27,7 +27,8 @@ return [
         'featured' => 'Featured',
         'main_Image' => 'Main Image',
         'media_gallery' => 'Media Gallery',
-        'image_or_video' => 'Image or Video',
+        'video' => 'Video',
+        'image_or_video' => 'Image Or Video',
     
         'subscription' => 'Subscription',
         'one_time' => 'One-Time Payment',

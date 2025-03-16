@@ -33,11 +33,17 @@ class TagResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('name_en')
                 ->required()
-                ->label(__('tag.name'))
+                ->label(__('tag.name_en'))
                 ->unique(ignoreRecord: true)
                 ->maxLength(255),
+
+                Forms\Components\TextInput::make('name_ar')
+                ->required()
+                ->label(__('tag.name_ar'))
+                ->unique(ignoreRecord: true)
+                ->maxLength(255)
             ]);
     }
 
@@ -45,10 +51,16 @@ class TagResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name_en')
                 ->sortable()
                 ->searchable()
-                ->label(__('tag.name')),
+                ->label(__('tag.name_en')),
+
+                Tables\Columns\TextColumn::make('name_ar')
+                ->sortable()
+                ->searchable()
+                ->label(__('tag.name_ar')),
+                
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->label(__('tag.created_at'))

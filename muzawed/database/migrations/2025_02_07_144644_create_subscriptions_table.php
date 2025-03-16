@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained()->onDelete('cascade'); // Enterprise that owns the subscription
-            $table->string('saas_product_name'); // DROPED in 212231. replaced with foreignId('saas_product_id')
-            $table->date('start_date');
+            $table->foreignId('saas_product_id')->nullable()->constrained('products')->onDelete('cascade');            $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();

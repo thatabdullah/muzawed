@@ -79,14 +79,14 @@ class AccountResource extends Resource
                 ]),
 
             Forms\Components\Repeater::make('members')
-                ->label('Member Users')
+                ->label(__('account.members_section'))
                 ->schema([
                     Forms\Components\TextInput::make('name')
                         ->label(__('account.member_name'))
                         ->required(),
 
                     Forms\Components\TextInput::make('email')
-                        ->label('account.member_email')
+                        ->label(__('account.member_email'))
                         ->email()
                         ->unique(User::class, 'email')
                         ->required(),

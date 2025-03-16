@@ -43,7 +43,7 @@ class TagResource extends Resource
                 ->required()
                 ->label(__('tag.name_ar'))
                 ->unique(ignoreRecord: true)
-                ->maxLength(255)
+                ->maxLength(255),
             ]);
     }
 

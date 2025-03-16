@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', ['enterprise', 'saas'])->index(); // Defines the account type
-            $table->string('logo')->nullable(); // logo for the account
             $table->text('description_en')->nullable();
             $table->text('description_ar')->nullable();
             $table->string('website')->nullable();

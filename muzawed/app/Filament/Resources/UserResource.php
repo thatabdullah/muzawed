@@ -25,7 +25,7 @@ class UserResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('filamentnav.users');
+        return __('filamentnav.user');
     }
 
     public static function getNavigationGroup(): string
@@ -40,24 +40,24 @@ class UserResource extends Resource
             ->schema([
                 Section::make('User Information')->schema([
                     Grid::make(2)->schema([
-                        Forms\components\TextInput::make('name')
+                        Forms\Components\TextInput::make('name')
                             ->label(__('user.name'))
                             ->required()
                             ->maxLength(255),
 
-                        Forms\components\TextInput::make('email')
+                        Forms\Components\TextInput::make('email')
                             ->email()
                             ->label(__('user.email'))
                             ->unique(User::class, 'email', ignoreRecord: true)
                             ->required(),
                         
-                        Forms\components\Select::make('account_id')
+                        Forms\Components\Select::make('account_id')
                         ->label(__('user.account'))
                         ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
                         ->searchable() 
                         ->nullable(), // (for indie users)*/
 
-                        Forms\components\Select::make('role')
+                        Forms\Components\Select::make('role')
                             ->options([
                                 'admin' => __('user.admin'),
                                 'member' => __('user.member'),
@@ -65,7 +65,7 @@ class UserResource extends Resource
                             ->default('member')
                             ->required(),
 
-                        Forms\components\TextInput::make('password')
+                        Forms\Components\TextInput::make('password')
                             ->password()
                             ->label(__('user.password'))
                             ->required(fn($record) => $record === null)
@@ -76,11 +76,11 @@ class UserResource extends Resource
                 ]),
 
                 Section::make('Settings')->schema([
-                    Forms\components\Toggle::make('is_active')
+                    Forms\Components\Toggle::make('is_active')
                         ->label(__('user.active'))
                         ->default(true),
 
-                    Forms\components\DateTimePicker::make('email_verified_at')
+                    Forms\Components\DateTimePicker::make('email_verified_at')
                         ->label(__('user.email_verified_at'))
                         ->default(now()),
                 ]),

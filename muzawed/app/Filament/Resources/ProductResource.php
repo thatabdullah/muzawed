@@ -43,7 +43,7 @@ class ProductResource extends Resource
                 ->required()
                 ->maxLength(255),
 
-            Forms\components\Select::make('account_id')
+            Forms\Components\Select::make('account_id')
             ->label(__('product.account'))
             ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
             ->searchable(),   
@@ -59,7 +59,7 @@ class ProductResource extends Resource
             Forms\Components\Select::make('category_id')
                 ->label(__('product.category'))
                 ->options(function () {
-                    return \App\Models\Category::all()->pluck('name', 'id');
+                    return \App\Models\Category::all()->pluck('name_en', 'id');
                 })
                 ->searchable()
                 ->required(),
@@ -179,7 +179,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable()->label(__('product.name')),
-                Tables\Columns\TextColumn::make('category.name')->label(__('product.category'))->sortable(),
+                Tables\Columns\TextColumn::make('category.name_en')->label(__('product.category'))->sortable(),
                 Tables\Columns\BooleanColumn::make('active')->sortable()->label(__('product.active')),
                 Tables\Columns\BooleanColumn::make('featured')->sortable()->label(__('product.featured')),
                 Tables\Columns\TextColumn::make('average_rating')->sortable()->label(__('product.average_rating')),

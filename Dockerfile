@@ -13,7 +13,11 @@ RUN apt-get update && \
         libxml2-dev \
         libzip-dev && \
     docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl zip && \
-    pecl install redis && docker-php-ext-enable redis && rm -rf /var/lib/apt/lists/* 
+    pecl install redis && docker-php-ext-enable redis && \
+    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && rm -rf /var/lib/apt/lists/* 
+
+RUN npm install tailwindcss @tailwindcss/vite    
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

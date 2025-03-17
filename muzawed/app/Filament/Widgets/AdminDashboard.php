@@ -4,6 +4,11 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use App\Models\Account;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\Category;
+
 
 class AdminDashboard extends BaseWidget
 {
@@ -20,7 +25,7 @@ class AdminDashboard extends BaseWidget
             ->descriptionIcon('heroicon-m-arrow-trending-up')
             ->chart([7, 2, 10, 3, 15, 4, 17])
             ->color('success'),    
-        Stat::make(__('dashboard.total_user'), User::query()->count())
+       /* Stat::make(__('dashboard.total_user'), User::query()->count())
             ->description(__('dashboard.user_description'))
             ->descriptionIcon('heroicon-m-arrow-trending-up')
             ->chart([7, 2, 10, 3, 15, 4, 17])
@@ -29,7 +34,7 @@ class AdminDashboard extends BaseWidget
             ->description(__('dashboard.category_description'))
             ->descriptionIcon('heroicon-m-arrow-trending-up')
             ->chart([7, 2, 10, 3, 15, 4, 17])
-            ->color('success'),
+            ->color('success'), */
         Stat::make(__('dashboard.total_product'), Product::query()->count())
             ->description(__('dashboard.product_description'))
             ->descriptionIcon('heroicon-m-arrow-trending-up')

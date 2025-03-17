@@ -45,7 +45,8 @@ class ProductResource extends Resource
 
             Forms\Components\Select::make('account_id')
             ->label(__('product.account'))
-            ->options(Account::all()->pluck('name', 'id')) // searchs by name and stores by id
+            ->options(Account::where('type', 'saas')->pluck('name', 'id')) // searchs by name and stores by id
+            ->required()
             ->searchable(),   
             
             Forms\Components\Textarea::make('description_en')
@@ -179,6 +180,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable()->label(__('product.name')),
+                Tables\Columns\TextColumn::make('account.name')->sortable()->searchable()->label(__('product.account')),
                 Tables\Columns\TextColumn::make('category.name_en')->label(__('product.category'))->sortable(),
                 Tables\Columns\BooleanColumn::make('active')->sortable()->label(__('product.active')),
                 Tables\Columns\BooleanColumn::make('featured')->sortable()->label(__('product.featured')),

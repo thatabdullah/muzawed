@@ -17,7 +17,7 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && rm -rf /var/lib/apt/lists/* 
 
-RUN npm install tailwindcss @tailwindcss/vite    
+RUN npm install tailwindcss @tailwindcss/vite --save-dev    
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

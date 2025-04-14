@@ -3,3 +3,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hs-card {
+    @apply border border-gray-200 dark:border-gray-700;
+}
+
+[dir="rtl"] .bg-gradient-to-r {
+    @apply bg-gradient-to-l;
+}
+[dir="rtl"] {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+[dir="ltr"] {
+    font-family: 'Inter', sans-serif;
+}

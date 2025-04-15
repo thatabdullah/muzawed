@@ -1,4 +1,3 @@
-<!-- resources/views/livewire/products-page.blade.php -->
 <section class="w-full bg-gradient-to-r from-blue-200 to-cyan-200 dark:bg-gradient-to-r dark:from-gray-950 dark:to-neutral-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <!-- Header -->
     <h2 class="text-2xl font-bold text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text dark:from-blue-600 dark:to-indigo-600">
@@ -95,7 +94,7 @@
                         <!-- Tags -->
                         <div class="mt-3 flex flex-wrap gap-2">
                             @foreach ($product->tags as $tag)
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-white">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-white">
                                     {{ app()->getLocale() === 'ar' ? $tag->name_ar : $tag->name_en }}
                                 </span>
                             @endforeach
@@ -103,7 +102,7 @@
                     </div>
                     <!-- Explore Button -->
                     <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-b-xl bg-white text-gray-800 shadow-2xs hover:bg-blue-600 hover:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-blue-600 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/products') }}">{{ __('homepage.explore') }}</a>
+                        <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-b-xl bg-white text-gray-800 shadow-2xs hover:bg-blue-600 hover:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-blue-600 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ route('product.show', ['locale' => app()->getLocale(), 'id' => $product->id]) }}">{{ __('homepage.explore') }}</a>
                     </div>
                 </div>
             @endforeach

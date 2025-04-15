@@ -106,7 +106,7 @@ class ProductResource extends Resource
             ->label(__('product.key_features_ar'))
             ->schema([
                 Forms\Components\TextInput::make('product.name')->required(),
-                Forms\Components\TextInput::make('product.description_en')->required(),
+                Forms\Components\TextInput::make('product.description_ar')->required(),
             ])
             ->default([])
             ->nullable()

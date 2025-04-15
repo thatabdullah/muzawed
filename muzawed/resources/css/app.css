@@ -17,3 +17,18 @@
 [dir="ltr"] {
     font-family: 'Inter', sans-serif;
 }
+.stop-color-1 {
+    stop-color: #2563eb; 
+}
+
+.stop-color-2 {
+    stop-color: #4f46e5; 
+}
+
+.dark .stop-color-1 {
+    stop-color: #3b82f6; 
+}
+
+.dark .stop-color-2 {
+    stop-color: #6366f1; 
+}

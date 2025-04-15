@@ -19,6 +19,26 @@ class CategoriesSection extends Component
     
     public function render()
     {
-        return view('livewire.categories-section');
+        $iconMap = [
+            'Cloud computing' => 'cloud',
+            'Data Science' => 'bar-chart-2',
+            'Cyber Security' => 'shield',
+            'Internet Of Things' => 'globe',
+            'Artificial Intelligence' => 'cpu',
+            'Enterprise Resource Planning (ERP)' => 'briefcase',
+            'Development' => 'code',
+            'BlockChain' => 'link',
+            'Storage' => 'database',
+            'Machine Learning' => 'activity',
+            'Infrastructure' => 'server',
+            'Cryptography' => 'lock',
+            'Digital Transformation' => 'refresh-cw',
+            'Communication' => 'message-square',
+            'Fintech' => 'dollar-sign',
+        ];
+
+        return view('livewire.categories-section', [
+            'iconMap' => $iconMap,
+        ]);
     }
 }

@@ -90,13 +90,29 @@ class ProductResource extends Resource
                 ->label(__('product.detailed_description_ar'))
                 ->nullable(),
 
-            Forms\Components\Textarea::make('key_features_en')
+            Forms\Components\Repeater::make('key_features_en')
             ->label(__('product.key_features_en'))
-            ->nullable(),
+            ->schema([
+                Forms\Components\TextInput::make('product.name')->required(),
+                Forms\Components\TextInput::make('product.description_en')->required(),
+            ])
+            ->default([])
+            ->nullable()
+            ->collapsible()
+            ->cloneable()
+            ->grid(2),
 
-            Forms\Components\Textarea::make('key_features_ar')
+            Forms\Components\Repeater::make('key_features_ar')
             ->label(__('product.key_features_ar'))
-            ->nullable(),
+            ->schema([
+                Forms\Components\TextInput::make('product.name')->required(),
+                Forms\Components\TextInput::make('product.description_en')->required(),
+            ])
+            ->default([])
+            ->nullable()
+            ->collapsible()
+            ->cloneable()
+            ->grid(2),
 
             Forms\Components\TextInput::make('documentation_url')
                 ->label(__('product.documentation_url'))

@@ -13,17 +13,22 @@ class ProductsPage extends Component
     public $sortBy = 'name';
     public $sortDirection = 'asc';
     public $selectedTag = '';
+    public $categories;
 
     public function mount()
     {
+        $this->category_id = request()->query('category_id', '');
+        $this->categories = Category::all();
         \Log::info('ProductsPage mounted', [
             'active_products' => Product::where('active', true)->count(),
+            
+            
         ]);
     }
 
     public function updated($property)
     {
-        // You can add logging here if needed for debugging tag changes
+
     }
 
     public function sort($field)
@@ -76,6 +81,7 @@ class ProductsPage extends Component
         return view('livewire.products-page', [
             'products' => $products,
             'categories' => $categories,
+            'categories' => $this->categories,
             'tags' => Tag::all(), 
         ]);
     }

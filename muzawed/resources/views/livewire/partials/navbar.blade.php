@@ -20,12 +20,14 @@
           <div id="navbar-collapse-with-animation" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block">
               <div class="overflow-hidden overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-slate-700 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
                   <div class="flex flex-col gap-x-0 mt-5 divide-y divide-dashed divide-gray-200 md:flex-row md:items-center md:gap-x-7 md:mt-0 md:ps-7 md:divide-y-0 md:divide-solid dark:divide-gray-700 md:justify-end">
-                      <a class="font-medium text-blue-600 py-3 md:py-6 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url('/') }}" aria-current="page">{{ __('navbar.home') }}</a>
-                      <a class="font-medium text-gray-500 hover:text-gray-400 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/categories') }}">{{ __('navbar.categories') }}</a>
-                      <a class="font-medium text-gray-500 hover:text-gray-400 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/products') }}">{{ __('navbar.saas_products') }}</a>
-                      <div class="pt-3 md:pt-0">
+                    <a class="font-medium {{ request()->routeIs('home') ? 'text-blue-600 dark:text-blue-500' : 'text-gray-500 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500' }} py-3 md:py-6 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale()) }}" @if(request()->routeIs('home')) aria-current="page" @endif>{{ __('navbar.home') }}</a>
+                    <a class="font-medium {{ request()->routeIs('categories') ? 'text-blue-600 dark:text-blue-500' : 'text-gray-500 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500' }} py-3 md:py-6 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/categories') }}" @if(request()->routeIs('categories')) aria-current="page" @endif>{{ __('navbar.categories') }}</a>
+                    <a class="font-medium {{ request()->routeIs('products') ? 'text-blue-600 dark:text-blue-500' : 'text-gray-500 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500' }} py-3 md:py-6 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/products') }}" @if(request()->routeIs('products')) aria-current="page" @endif>{{ __('navbar.saas_products') }}</a>
                           <a class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/login') }}">{{ __('navbar.login') }}</a>
-                      </div>
+                          
+                          @livewire('language-switcher')
+                      
+                    </div>
                   </div>
               </div>
           </div>

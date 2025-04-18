@@ -28,10 +28,10 @@
                           <!-- Repeat 5 stars -->
                       </div>
                       <p class="mt-3 text-sm text-gray-800 dark:text-neutral-200">
-                          {{ __('homepage.review_1_score') }}
+                         {{-- {{ __('homepage.review_1_score') }} --}}
                       </p>
                       <div class="mt-5 flex items-center h-16">
-                        <img src="https://app.sa.focal.mozn.sa/images/site_thumbnail.png" alt="{{ __('messages.logo_alt') }}" class="h-auto w-16" />
+                        {{-- <img src="https://app.sa.focal.mozn.sa/images/site_thumbnail.png" alt="{{ __('messages.logo_alt') }}" class="h-auto w-16" /> --}}
                       </div>
                   </div>
                   <!-- Review 2 -->
@@ -43,10 +43,10 @@
                           <!-- Repeat 4 stars + half -->
                       </div>
                       <p class="mt-3 text-sm text-gray-800 dark:text-neutral-200">
-                          {{ __('homepage.review_2_score') }}
+                         {{-- {{ __('homepage.review_2_score') }} --}}
                       </p>
                       <div class="mt-5 flex items-center h-16">
-                        <img src="https://dubai.stepconference.com/wp-content/uploads/2023/02/P32-LISAN-LOGO-HORIZONTAL-01-Noor-Alasadi.png" alt="{{ __('messages.logo_alt') }}" class="h-auto w-16" />
+                      {{--  <img src="https://dubai.stepconference.com/wp-content/uploads/2023/02/P32-LISAN-LOGO-HORIZONTAL-01-Noor-Alasadi.png" alt="{{ __('messages.logo_alt') }}" class="h-auto w-16" /> --}}
                       </div>
                   </div>
               </div>

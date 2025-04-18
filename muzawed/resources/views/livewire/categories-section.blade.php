@@ -1,12 +1,11 @@
-<!-- resources/views/livewire/categories-section.blade.php -->
-<section id="categories" class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<section id="categories" class="w-full bg-gradient-to-r from-blue-200 to-cyan-200 dark:bg-gradient-to-r dark:from-gray-950 dark:to-neutral-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <h2 class="text-2xl font-bold text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text dark:from-blue-600 dark:to-indigo-600">{{ __('footer.categories') }}</h2>
     @if ($categories->isEmpty())
         <p class="mt-6 text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text dark:from-blue-600 dark:to-indigo-600">{{ __('footer.no_categories') }}</p>
     @else
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mt-6">
             @foreach ($categories as $category)
-                <a class="group flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-md focus:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800" href="{{ url(app()->getLocale() . '/categories/' . $category->id) }}">
+                <a class="group flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-md focus:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800" href="{{ route('products', ['locale' => app()->getLocale(), 'category_id' => $category->id]) }}">
                     <div class="p-4 md:p-5">
                         <div class="flex gap-x-5 items-center">
                             <!-- Dynamic Feather Icon with Gradient -->

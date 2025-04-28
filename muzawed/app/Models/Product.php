@@ -3,6 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Product extends Model
 {
@@ -49,6 +51,15 @@ class Product extends Model
         
     ];
 
+    public function getLogoUrlAttribute()
+    {
+        $path = "products/{$this->id}/{$this->id}.png";
+        return Storage::disk('s3')->exists($path)
+            ? Storage::disk('s3')->url($path)
+            : 'https://placehold.co/64x32/2563eb/1e40af/png?text=Logo';
+    }
+
+
     // Product belongs to a SaaS Provider (Account)
     public function account()
     {
@@ -74,7 +85,7 @@ class Product extends Model
     }
     public function usersWhoBookmarked()
 {
-        return $this->belongsToMany(User::class, 'bookmark_user');
+        return $this->belongsToMany(User::class, 'bookmark_user', 'product_id', 'user_id')->withTimestamps();
 }
 
     public function integrationPartners()

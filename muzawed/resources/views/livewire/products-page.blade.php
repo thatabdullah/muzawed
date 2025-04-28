@@ -55,8 +55,10 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             @foreach ($products as $product)
             <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                <div class="h-32 flex flex-col justify-center items-center bg-blue-600 rounded-t-xl">
-                    <img src="https://placehold.co/64x32/2563eb/1e40af/png?text=Logo" alt="Temporary Product Logo" class="h-8 w-16 object-contain">
+                <div class="h-32 flex flex-col justify-center items-center bg-blue-300 rounded-t-xl">
+                   <div class="h-16 w-32 flex justify-center items-center rounded-sm">
+                    <img src="{{ Storage::disk('s3')->url('products/' . $product->id . '/' . $product->id . '.png') }}" alt="Temporary Product Logo" class="max-h-16 max-w-32 object-contain">
+                    </div>
                 </div>
                 <div class="p-4 md:p-6">
                         <!-- Name and Account -->

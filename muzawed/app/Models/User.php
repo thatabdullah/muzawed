@@ -62,7 +62,7 @@ class User extends Authenticatable
 }
     public function bookmarks()
     {
-        return $this->belongsToMany(SaaSProduct::class, 'bookmark_user');
+        return $this->belongsToMany(Product::class, 'bookmark_user', 'user_id', 'product_id')->withTimestamps();
     }
 
 }

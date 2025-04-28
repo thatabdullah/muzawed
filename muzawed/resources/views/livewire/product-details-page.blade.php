@@ -11,13 +11,13 @@
         <!-- Hero Header -->
         <div class="relative bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-xl p-8 text-white dark:from-blue-700 dark:to-indigo-700 mb-12">
             <div class="flex items-center gap-4">
-                <img src="https://placehold.co/128x64/2563eb/1e40af/png?text=Logo" alt="{{ $product->name }} Logo" class="h-16 w-32 object-contain">
+                <img src="{{ Storage::disk('s3')->url('products/' . $product->id . '/' . $product->id . '.png') }}" alt="Temporary Product Logo" class="h-16 w-32 object-contain">
                 <div>
-                    <h1 class="text-4xl font-bold tracking-tight">
+                    <h1 class="text-4xl font-bold tracking-tight {{ app()->getLocale() === 'ar' ? 'font-arabic' : 'font-manrope' }}">
                         {{ $product->name }}
                     </h1>
                     @if ($product->featured)
-                        <span class="hs-badge bg-yellow-400 text-yellow-900 dark:bg-yellow-500 dark:text-yellow-100 mt-2">
+                        <span class="bg-gradient-to-r from-purple-600 to-indigo-900 text-transparent bg-clip-text dark:from-purple-600 dark:to-indigo-900">
                             {{ __('saasproducts.featured') }}
                         </span>
                     @endif
@@ -31,8 +31,11 @@
                     {{ app()->getLocale() === 'ar' ? $product->category->name_ar : $product->category->name_en }}
                 </span>
             </div>
+            <div class="absolute top-4 {{ app()->getLocale() === 'ar' ? 'left-4' : 'right-4' }}">
+                @livewire('bookmark-toggle', ['productId' => $product->id])
+            </div>
         </div>
-
+        <!-- Additional product details content -->
         <!-- Main Content -->
         <div class="hs-card bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-xl shadow-md p-6">
             <!-- Overview -->

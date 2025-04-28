@@ -53,9 +53,19 @@
           </div>
           <!-- Right Column (Image) -->
           <div class="relative">
-              <img class="max-w-md w-full rounded-md mx-auto" src="https://static.vecteezy.com/system/resources/thumbnails/047/247/466/small/3d-code-icon-programming-code-symbols-software-and-web-development-icon-png.png" alt="SaaS Image">
-              <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 lg:mt-6 lg:-mb-6"></div>
-          </div>
+            <img 
+                class="max-w-md w-full rounded-md mx-auto block dark:hidden"
+                src="{{ Storage::disk('s3')->url('logo/' . 'lightmode.png') }}" 
+                alt="SaaS Light Logo"
+            >
+            <img 
+                class="max-w-md w-full rounded-md mx-auto hidden dark:block"
+                src="{{ Storage::disk('s3')->url('logo/' . 'darkmode.png') }}" 
+                alt="SaaS Dark Logo"
+            >
+        
+            <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 lg:mt-6 lg:-mb-6"></div>
+        </div>
       </div>
   </div>
   @livewire('featured-products')

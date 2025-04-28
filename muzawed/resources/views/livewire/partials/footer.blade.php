@@ -11,8 +11,8 @@
           <h4 class="font-bold text-gray-100">{{__('footer.saas_products')}}</h4>
   
           <div class="mt-3 grid space-y-3">
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/categories">{{__('footer.categories')}}</a></p>
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">{{__('footer.all_products')}}</a></p>
+            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/categories') }}">{{__('footer.categories')}}</a></p>
+            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/products') }}">{{__('footer.all_products')}}</a></p>
             <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">{{__('footer.featured_products')}}</a></p>
           </div>
         </div>

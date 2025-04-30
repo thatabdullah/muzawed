@@ -14,16 +14,14 @@ class ProductsPage extends Component
     public $sortDirection = 'asc';
     public $selectedTag = '';
     public $categories;
+    public $product;
 
     public function mount()
     {
         $this->category_id = request()->query('category_id', '');
         $this->categories = Category::all();
-        \Log::info('ProductsPage mounted', [
-            'active_products' => Product::where('active', true)->count(),
-            
-            
-        ]);
+        $this->product = Product::first();
+        
     }
 
     public function updated($property)
@@ -44,7 +42,7 @@ class ProductsPage extends Component
     public function render()
     {
         $query = Product::where('active', true)
-            ->with(['category', 'account', 'tags']); // Add tags relationship
+            ->with(['category', 'account', 'tags', 'reviews']); 
 
         if ($this->search) {
             $query->where(function ($q) {

@@ -1,4 +1,4 @@
-<section class="min-h-screen bg-gradient-to-br from-blue-100 via-cyan-100 to-white dark:from-gray-950 dark:via-neutral-900 dark:to-black py-12 px-4 sm:px-6 lg:px-8 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<section class="min-h-screen bg-gradient-to-t from-blue-50 via-white to-cyan-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPjxwYXRoIGQ9Ik0yIDBoMXYxSDJ6TTEgMmgxdjFIMXoiIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiLz48L3N2Zz4=')] dark:from-gray-950 dark:via-neutral-900 dark:to-black py-12 px-4 sm:px-6 lg:px-8 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="max-w-4xl mx-auto">
         <!-- Back Link -->
         <a href="{{ route('products', ['locale' => app()->getLocale()]) }}" class="group inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-8 transition-colors duration-200">
@@ -37,7 +37,7 @@
         </div>
         <!-- Additional product details content -->
         <!-- Main Content -->
-        <div class="hs-card bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-xl shadow-md p-6">
+        <div class="hs-card bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-xl shadow-md p-6">
             <!-- Overview -->
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div>
@@ -115,13 +115,13 @@
         </h2>
         <div class="hs-accordion-group">
             @foreach ((app()->getLocale() === 'ar' ? ($product->key_features_ar ?? []) : ($product->key_features_en ?? [])) as $index => $feature)
-                <div class="hs-accordion bg-gray-50 dark:bg-neutral-900 rounded-lg mb-2" id="feature-{{ $index }}">
+                <div class="hs-accordion bg-white dark:bg-neutral-900  rounded-lg mb-2" id="feature-{{ $index }}">
                     <button class="hs-accordion-toggle inline-flex items-center justify-between w-full p-4 text-left text-gray-800 dark:text-neutral-200 font-medium hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition" type="button">
                         <span>
                             {{ $feature['product']['name'] ?? __('saasproducts.unknown_feature') }}
                         </span>
-                        <svg class="hs-accordion-active:hidden w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        <svg class="hs-accordion-active:hidden w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M19 9l-7 7-7-7"/>
                         </svg>
                         <svg class="hs-accordion-active:block hidden w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -208,6 +208,7 @@
                     </svg>
                 </a>
             </div>
+            <livewire:product-reviews :product="$product" />
         </div>
     </div>
 </section>

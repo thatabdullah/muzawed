@@ -92,4 +92,9 @@ class Product extends Model
     {
         return $this->belongsToMany(IntegrationPartner::class, 'product_integration_partner'); // many-to-many with product
     }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating') ?: 0;
+    }
 }

@@ -32,4 +32,13 @@ return [
     'product_link' => 'رابط المنتج', 
     'visit_product' => 'زيارة المنتج',
     'explore_product' => 'إستكشف المنتج',
+    'customer_reviews' => 'مراجعات العملاء',
+    'ratings' => 'التقييمات',
+    'write_review' => 'أكتب مراجعة',
+    'share_thoughts' => 'شارك أفكارك',
+    'submit_review' => 'إضافة المراجعة',
+    'all_reviews' => 'كل المراجعات',
+    'no_reviews_yet' => 'لا يوجد مراجعات',
+    'sign_in_to_review' => 'سجل دخولك لإضافة مراجعة',
+    'see_all_reviews' => "كل المراجعات",
 ];

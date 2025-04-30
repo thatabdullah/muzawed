@@ -23,12 +23,23 @@ class LoginPage extends Component
         $this->validate();
 
         $throttleKey = Str::lower($this->email) . '|' . request()->ip();
+        
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
-            $this->addError('email', __('Too many login attempts. Please try again in :seconds seconds.', ['seconds' => RateLimiter::availableIn($throttleKey)]));
+            $this->addError('email', __('Too many login attempts. Please try again in :seconds seconds.', [
+                'seconds' => RateLimiter::availableIn($throttleKey)
+            ]));
             return;
         }
 
-        if (Auth::attempt(['email' => $this->email, 'password' => $this->password, 'account_id' => null, 'parent_id' => null, 'role' => 'member'], $this->remember)) {
+        // Attempt login without checking account_id
+        if (Auth::attempt([
+            'email' => $this->email,
+            'password' => $this->password,
+            // Remove these restrictions to allow all valid users
+            // 'account_id' => null, 
+            // 'parent_id' => null,
+            // 'role' => 'member'
+        ], $this->remember)) {
             RateLimiter::clear($throttleKey);
             return redirect()->intended(route('home'));
         }

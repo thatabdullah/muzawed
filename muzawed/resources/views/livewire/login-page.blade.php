@@ -1,7 +1,7 @@
 <x-slot name="title">{{ __('Login') }}</x-slot>
 
-<section class="w-full bg-gradient-to-br from-blue-200 to-cyan-200 dark:from-gray-950 dark:to-neutral-900 py-12 px-4 sm:px-6 lg:px-8 mx-auto min-h-screen flex flex-col sm:justify-center items-center" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
-    <div class="w-full sm:max-w-md bg-white dark:bg-neutral-900 border border-gray-300 dark:border-neutral-800 rounded-2xl shadow-xl p-6 sm:p-8">
+<section class="w-full bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-950 dark:to-neutral-900 py-12 px-4 sm:px-6 lg:px-8 mx-auto min-h-screen flex flex-col sm:justify-center items-center" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+    <div class="w-full sm:max-w-md bg-white dark:bg-neutral-900 rounded-2xl p-6 sm:p-8">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white {{ app()->getLocale() === 'ar' ? 'font-arabic' : 'font-manrope' }} mb-6 text-center">
             {{ __('Sign in to') }} <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">{{ __('Muzawed') }}</span>
         </h2>

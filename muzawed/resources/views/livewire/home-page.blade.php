@@ -1,10 +1,10 @@
-<section class="w-full bg-gradient-to-r from-blue-200 to-cyan-200 dark:bg-gradient-to-r dark:from-gray-950 dark:to-neutral-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<section class="w-full bg-gradient-to-t from-blue-50 via-white to-cyan-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPjxwYXRoIGQ9Ik0yIDBoMXYxSDJ6TTEgMmgxdjFIMXoiIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiLz48L3N2Zz4=')] dark:bg-gradient-to-r dark:from-gray-950 dark:to-neutral-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
   <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Grid -->
       <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
           <!-- Left Column (Slogan, Buttons, Reviews) -->
           <div class="space-y-6">
-              <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
+              <h1 class="block text-3xl font-black text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
                   {{ __('homepage.slogan') }} <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text dark:from-blue-600 dark:to-indigo-600">{{__('homepage.muzawed')}}</span>
               </h1>
               <p class="mt-3 text-lg font-medium text-gray-800 dark:text-neutral-200">{{ __('homepage.sub_slogan') }}</p>

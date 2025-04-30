@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use App\Models\Review; 
 
 class ProfilePage extends Component
 {
@@ -13,8 +14,9 @@ class ProfilePage extends Component
     public $email;
     public $status = '';
     public $bookmarkedProducts;
+    public $userReviews;
 
-    protected $listeners = ['bookmark-updated' => 'refreshBookmarks'];
+    protected $listeners = ['bookmark-updated' => 'refreshBookmarks', 'review-deleted' => 'refreshReviews'];
 
     protected $rules = [
         'name' => 'required|string|max:255',
@@ -26,6 +28,8 @@ class ProfilePage extends Component
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
         $this->refreshBookmarks();
+        $this->refreshReviews();
+
     }
 
     public function refreshBookmarks()
@@ -33,6 +37,26 @@ class ProfilePage extends Component
         $bookmarks = Auth::user()->bookmarks()->orderByPivot('created_at', 'desc')->get();
         \Log::info('Bookmarks for user ' . Auth::id() . ': ' . $bookmarks->toJson());
         $this->bookmarkedProducts = $bookmarks;
+    }
+    public function refreshReviews()
+    {
+        $this->userReviews = Auth::user()->reviews()
+            ->with('product') 
+            ->latest()
+            ->get();
+    }
+    public function deleteReview($reviewId)
+    {
+        $review = Review::findOrFail($reviewId);
+        
+       
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $review->delete();
+        $this->dispatch('review-deleted');
+        $this->status = __('Review deleted successfully.');
     }
 
     public function updateProfile()

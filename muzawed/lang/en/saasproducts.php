@@ -32,6 +32,13 @@ return [
     'product_link' => 'Product Link', 
     'visit_product' => 'Visit Product',
     'explore_product' => 'Explore Product',
-
-
+    'customer_reviews' => 'Customer Reviews',
+    'ratings' => 'Ratings',
+    'write_review' => 'Write a Review',
+    'share_thoughts' => 'Share a thought',
+    'submit_review' => 'Submit Review',
+    'all_reviews' => 'All Reviews',
+    'no_reviews_yet' => 'No reviews Yet',
+    'sign_in_to_review' => 'Sign in to review',
+    'see_all_reviews' => "See All Reviews",
 ];

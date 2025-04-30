@@ -1,6 +1,6 @@
 <x-slot name="title">{{ __('Register') }}</x-slot>
 
-<section class="w-full bg-gradient-to-r from-blue-200 to-cyan-200 dark:bg-gradient-to-r dark:from-gray-950 dark:to-neutral-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto min-h-screen flex flex-col sm:justify-center items-center" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<section class="w-full bg-gradient-to-br from-blue-50 to-cyan-50 dark:bg-gradient-to-r dark:from-gray-950 dark:to-neutral-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto min-h-screen flex flex-col sm:justify-center items-center" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="mb-6">
         <a href="{{ route('home', ['locale' => app()->getLocale()]) }}">
             

@@ -16,7 +16,7 @@ resource "alicloud_instance" "app_server" {
   #######
 ]
 
- ## user_data = base64encode()
+   user_data = base64encode(file("servers.sh"))
 }
 
 output "app_server_private_ips" {

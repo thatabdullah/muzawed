@@ -22,7 +22,7 @@
           <h4 class="font-semibold text-gray-100">{{__('footer.muzawed')}}</h4>
   
           <div class="mt-3 grid space-y-3">
-            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">{{__('footer.about_us')}}</a></p>
+            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{ url(app()->getLocale() . '/about') }}">{{__('footer.about_us')}}</a></p>
   
           </div>
         </div>

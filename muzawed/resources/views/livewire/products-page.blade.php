@@ -79,7 +79,7 @@
                             {{ app()->getLocale() === 'ar' ? $product->description_ar : $product->description_en }}
                         </p>
                         <!-- Rating -->
-                        <div class="mt-3 flex items-center gap-x-1">
+                        {{-- <div class="mt-3 flex items-center gap-x-1">
                             <svg
                                 class="w-5 h-5 text-yellow-400"
                                 fill="currentColor"
@@ -89,8 +89,8 @@
                             </svg>
                             <span class="ml-1 text-sm text-gray-600">
                                 {{ number_format($product->average_rating, 1) }}
-                            </span>
-                        </div>
+                            </span> 
+                        </div> --}}
                         <!-- Tags -->
                         <div class="mt-3 flex flex-wrap gap-2">
                             @foreach ($product->tags as $tag)

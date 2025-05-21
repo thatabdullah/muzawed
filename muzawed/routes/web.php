@@ -10,7 +10,9 @@ use App\Livewire\RegisterPage;
 use App\Livewire\ForgotPasswordPage;
 use App\Livewire\ProfilePage;
 use App\Livewire\BookmarkToggle;
+use App\Livewire\AboutPage;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductController;
 Route::get('/', HomePage::class)->name('home');
 
 Route::prefix('{locale}')->where(['locale' => 'en|ar'])->group(function () {
@@ -25,4 +27,5 @@ Route::prefix('{locale}')->where(['locale' => 'en|ar'])->group(function () {
     Route::get('/profile', ProfilePage::class)->name('profile')->middleware('auth');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::post('/bookmarks/{productId}', [BookmarkToggle::class, 'toggleBookmark'])->name('bookmarks.toggle')->middleware('auth');
+    Route::get('/about', AboutPage::class)->name('about');
 });
